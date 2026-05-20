@@ -1,0 +1,385 @@
+/* ==========================================
+   SPOTIFY DESIGN SYSTEM - FULL CSS
+   ========================================== */
+
+:root {
+    --spotify-black: #121212;
+    --spotify-dark-gray: #181818;
+    --spotify-light-gray: #282828;
+    --spotify-green: #1DB954;
+    --spotify-text-white: #FFFFFF;
+    --spotify-text-muted: #B3B3B3;
+}
+
+/* ------------------------------------------
+   0. RESET & BASE LAYOUT
+   ------------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--spotify-text-white);
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* App Container (Simulasi Ponsel / Spotify App Frame) */
+.app-container {
+    width: 100%;
+    max-width: 450px;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1e3224 0%, var(--spotify-black) 40%);
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Loading Screen */
+.loader-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--spotify-black);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--spotify-light-gray);
+    border-top: 3px solid var(--spotify-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Helper Utility Classes */
+.fullscreen { min-height: 100vh; }
+.section-padding { padding: 40px 20px; }
+.text-center { text-align: center; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mt-10 { margin-top: 10px; }
+.mt-15 { margin-top: 15px; }
+.hidden-layout { display: none !important; }
+.hidden { display: none !important; }
+
+/* Typography */
+h1, h2, h3 { font-weight: 700; }
+.arabic-text { font-family: Arial, sans-serif; font-size: 26px; color: var(--spotify-green); margin-bottom: 20px; text-align: center; }
+
+/* ------------------------------------------
+   1. HERO COVER SECTION (Fixed Layout)
+   ------------------------------------------ */
+.hero-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #1c3b2b 0%, var(--spotify-black) 100%);
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+}
+
+.cover-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Default Box Album Cover (Menggunakan pseudo-element seandainya gambar di HTML tidak dipakai) */
+/* .hero-cover::before {
+    content: "";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    width: 240px;
+    height: 240px;
+    background: linear-gradient(135deg, #19e68c, #1d4ed8);
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+} */
+
+/* Jika Anda mengaktifkan tag <img> dengan class ini di HTML, pseudo-element di atas wajib dimatikan */
+.album-art-cover {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.subtitle-spacing {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--spotify-text-muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.cover-title {
+    font-size: 28px;
+    color: var(--spotify-text-white);
+    margin-bottom: 10px;
+}
+
+.cover-date {
+    font-size: 14px;
+    color: var(--spotify-text-muted);
+    margin-bottom: 35px;
+}
+
+/* ------------------------------------------
+   2. BUTTONS DESIGN SYSTEM
+   ------------------------------------------ */
+.btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+    gap: 12px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--spotify-green);
+    color: #000000;
+}
+.btn-primary:hover { transform: scale(1.03); background-color: #1ed760; }
+.btn-primary:active { transform: scale(0.95); }
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--spotify-text-white);
+    border: 1px solid var(--spotify-text-muted);
+}
+.btn-secondary:hover { transform: scale(1.03); border-color: var(--spotify-text-white); }
+.btn-secondary:active { transform: scale(0.95); }
+
+.btn-block { width: 100%; }
+.btn-sm { padding: 8px 16px; font-size: 12px; border-radius: 20px; }
+.btn-instagram { background-color: #282828; color: var(--spotify-text-white); margin-top: 10px; display: inline-flex; align-items: center; }
+
+/* Floating Action Button (Music Controls) */
+.fab-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--spotify-green);
+    border: none;
+    border-radius: 50%;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+.fab-btn:active { transform: scale(0.9); }
+
+/* ------------------------------------------
+   3. MAIN CONTENT CARDS (Spotify UI Components)
+   ------------------------------------------ */
+.glass-card {
+    background: var(--spotify-dark-gray);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+}
+.glass-card:hover {
+    background: var(--spotify-light-gray);
+}
+
+.section-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--spotify-green);
+    padding-left: 12px;
+    color: var(--spotify-text-white);
+}
+
+.small-title { color: var(--spotify-green); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+.guest-name { font-size: 26px; margin: 12px 0; color: var(--spotify-text-white); }
+.small-desc, .parents-text { color: var(--spotify-text-muted); font-size: 13px; line-height: 1.6; }
+
+/* Mempelai Section (Artist List View) */
+.couple-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.couple-card {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 16px;
+    margin-bottom: 0;
+}
+.circle-img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; /* Bulat Sempurna layaknya Profil Artis */
+    object-fit: cover;
+    margin-right: 18px;
+    border: 2px solid var(--spotify-green);
+}
+.couple-name { font-size: 16px; color: var(--spotify-text-white); margin-bottom: 4px; }
+
+/* Countdown & Progress Player Style */
+.status-text { font-size: 14px; color: var(--spotify-green); font-weight: 600; letter-spacing: 0.5px; }
+.timer-grid {
+    display: flex;
+    justify-content: space-around;
+    background: #111111;
+    padding: 15px 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid #222;
+}
+.time-box span { font-size: 22px; font-weight: 700; color: var(--spotify-text-white); }
+.time-box p { font-size: 11px; color: var(--spotify-text-muted); text-transform: uppercase; margin-top: 2px; }
+
+/* Event Cards (Tracks Playlist Style) */
+.event-card {
+    border-bottom: 1px solid var(--spotify-light-gray);
+    border-radius: 0;
+    background: transparent;
+    padding: 20px 5px;
+    margin-bottom: 0;
+}
+.event-card:last-of-type { border-bottom: none; }
+.event-title { font-size: 18px; color: var(--spotify-text-white); margin-bottom: 6px; }
+
+/* Media Elements (Maps, Video, & Gifts) */
+.map-radius, .video-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+.video-responsive iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+
+/* Gallery Block */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+.gallery-grid img, .gallery-slider img {
+    width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    aspect-ratio: 1/1; /* Kotak Album Sempurna */
+}
+.gallery-grid img:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+}
+.gallery-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    margin-top: 12px;
+    padding-bottom: 8px;
+}
+.gallery-slider::-webkit-scrollbar { height: 4px; }
+.gallery-slider::-webkit-scrollbar-thumb { background: var(--spotify-light-gray); border-radius: 10px; }
+.gallery-slider img { width: 130px; flex-shrink: 0; }
+
+/* Digital Gift - Bank Logos Uniformity */
+.bank-logo {
+    height: 28px;
+    filter: brightness(0) invert(1); /* Memaksa logo bank menjadi warna putih minimalis */
+    margin: 15px 0;
+}
+.rek-number { font-size: 18px; font-weight: 700; letter-spacing: 1.5px; color: var(--spotify-green); margin-bottom: 4px; }
+
+/* ------------------------------------------
+   4. STICKY BOTTOM NAVIGATION (Spotify Base Menu)
+   ------------------------------------------ */
+.glass-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 450px;
+    background: linear-gradient(to top, #000000 85%, rgba(0,0,0,0.8) 100%);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0 24px 0; /* Memberi ruang navigasi gesture swipe iPhone/Android */
+    z-index: 999;
+    border-top: 1px solid #222222;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--spotify-text-muted);
+    transition: color 0.2s, transform 0.2s;
+    flex: 1;
+}
+
+.nav-item:hover, .nav-item:active {
+    color: var(--spotify-text-white);
+}
+
+.nav-icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.nav-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
