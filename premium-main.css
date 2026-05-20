@@ -104,22 +104,6 @@ h1, h2, h3 { font-weight: 700; }
     height: 100%;
 }
 
-/* Default Box Album Cover (Menggunakan pseudo-element seandainya gambar di HTML tidak dipakai) */
-/* .hero-cover::before {
-    content: "";
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
-    width: 240px;
-    height: 240px;
-    background: linear-gradient(135deg, #19e68c, #1d4ed8);
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-} */
-
-/* Jika Anda mengaktifkan tag <img> dengan class ini di HTML, pseudo-element di atas wajib dimatikan */
 .album-art-cover {
     width: 240px;
     height: 240px;
@@ -382,4 +366,93 @@ h1, h2, h3 { font-weight: 700; }
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   SPOTIFY VENUE ICON STYLE
+   ========================================== */
+.venue-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: var(--spotify-light-gray);
+    border: 2px solid var(--spotify-green);
+    border-radius: 50%; /* Membuat lingkaran seperti playlist cover */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px; /* Mengatur ukuran emoji gedung */
+    margin: 15px auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: transform 0.3s;
+}
+
+.venue-icon-wrapper:hover {
+    transform: scale(1.05);
+    background-color: #333333;
+}
+
+
+/* ==========================================
+   SPOTIFY GALLERY LIGHTBOX (ZOOM + WIPE UP)
+   ========================================== */
+.lightbox-overlay {
+    display: none; /* Tersembunyi secara default */
+    position: fixed;
+    z-index: 99999; /* Di atas semua elemen termasuk navbar */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Hitam pekat khas Spotify */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: zoom-out;
+}
+
+/* Animasi Wipe Up / Slide Up Masuk */
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+    /* Memicu animasi wipe up */
+    animation: wipeUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes wipeUp {
+    from {
+        transform: translateY(100vh) scale(0.9); /* Muncul dari bawah layar */
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1); /* Berhenti di tengah pas */
+        opacity: 1;
+    }
+}
+
+/* Tombol Close silang di pojok atas */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: var(--spotify-text-muted);
+    font-size: 35px;
+    font-weight: bold;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+.lightbox-close:hover {
+    color: var(--spotify-text-white);
+}
+
+/* Teks panduan di bawah gambar */
+.lightbox-caption {
+    margin-top: 15px;
+    color: var(--spotify-text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
